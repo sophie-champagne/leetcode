@@ -1,0 +1,149 @@
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        #if the root is not None, create an empty list 
+        if not root:
+            return []
+        #create an empty list 
+        res = []
+        res.append(root.val)
+        #add the results 
+        res += self.preorderTraversal(root.left)
+        res += self.preorderTraversal(root.right)
+        return res
+
+      
+N queens problem
+permutations and combinations 
+
+  def helper(root):
+    if root == None:
+      return
+    pre.append(root.val) # pre is a closure
+    helper(root.left)
+    helper(root.right)
+
+def preorder(root):
+  pre = []
+  def helper(root):
+    if root == None:
+      return
+    pre.append(root.val)
+    helper(root.left)
+    helper(root.right)
+  return pre
+
+
+def helper(root, arr):
+  if root == None:
+    return
+  arr.append(root.val)
+  helper(root.left)
+  helper(root.right)
+  
+def preorder(root):
+  pre = []
+  helper(root, pre)
+  return pre
+      
+      1
+     2
+    
+    
+       1
+         2
+        
+      [1,2]
+      
+      [1, null, 2, ]
+       r l-----r----
+      [1,2,3,4,5,6,7]
+      
+      TreeNode(10, TreeNode(1, TreeNode(3, None, None)), TreeNode())
+      1
+    2   4
+  2  4    1
+
+learn the concept of balanced tree, full tree
+height of balanced tree/full = log(n)
+height of unbalanced tree > log(n)
+
+       1
+     2    3
+   4  5  6 7
+1234567
+1245367
+
+
+       1
+    4     4
+  2  2  4   4
+  
+higher order functions
+function that may accept another function as a parameter
+map filter reduce
+
+[[1],[2,3],[4,5,6,7]]
+res = [1, 2, 3, 4, 5, 6, 7]
+exit [3, 4, 5] enter
+node = 2
+class Solution:
+    def levelTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        queue = Queue()
+        queue.enqueue(root)
+        while len(queue) > 0:
+            node = queue.dequeue()
+            if not node:
+                continue
+            res.append(node.val)
+            queue.enqueue.(node.left)
+            queue.enqueue(node.right)
+        return res
+
+full tree will be useful for understanding heaps
+don't learn red/black trees, etc
+
+
+
+root -> left preorder -> right preorder
+#using stack as a solution,stack is last in first out
+           1
+    2            3
+4    5        None   7 
+-> [1,2,3]
+
+   1
+  2 3
+
+  
+  time = O(n)
+  
+  
+  preorder (print => O(h(tree)))
+  preorder (return the arr => O(n))
+O(height(tree))
+n = # of node
+best case height(tree) = log(n)
+worst case height(tree) = n
+    1
+  2  None
+3   None
+  
+res = [1, 2, 3]
+stack = []
+root = 1
+node = 3
+class Solution:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        stack = [root]
+        while len(stack) > 0:
+            node = stack.pop()
+            if not node:
+                continue
+            res.append(node.val)
+            stack.append(node.right)
+            stack.append(node.left)
+        return res
+            
+      
