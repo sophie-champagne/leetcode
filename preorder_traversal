@@ -20,6 +20,7 @@ class Solution:
         return res
         
 #using stack as a solution,stack is last in first out 
+#
 class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         
