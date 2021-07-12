@@ -1,0 +1,157 @@
+https://leetcode.com/problems/minimum-distance-between-bst-nodes/solution/
+https://leetcode.com/problems/balance-a-binary-search-tree/
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+# N = number of nodes in the tree
+logN > N 
+
+dfs() can't be logN
+
+6
+    1
+  0  4
+-1.    5
+ 
+O(logN) 
+O(Height of the tree)
+Height could be = N
+   1
+     2 
+       4
+         5
+in a balanced binary tree, Height = logN
+
+
+average case: O(logN)
+worst case: O(N)
+find(root: BinTree, n: int):
+  
+  
+  def inorderTraversal(node): # O(N) time you are visiting every single node so it can't be O(logN)
+    if node:  
+      print(node.val)
+      inorderTraversal(node.left)
+      inorderTraversal(node.right)
+
+# can you find the distance?
+# I don't care how you do it
+# sorting is not the focus of this interview 
+
+# always ask the interviewer if you can use a library function
+arr = [3,4,6,2,4]
+arr.sort() # O(NlogN)
+
+O(N*logN)
+        4
+     1     6
+   -1  3
+
+  4 1 -1 3 6
+
+-1 1 3 4 6
+  
+  [1,2,3,4,6]
+  
+  
+
+class Solution:
+    def minDiffInBST(self, root: TreeNode) -> int:
+        vals = []
+        
+        def inorder(node): # O(N) time you are visiting every single node so it can't be O(logN)
+            if node:  
+                inorder(node.left)
+                vals.append(node.val)
+                inorder(node.right)
+
+        dfs(root)
+        
+        #after the array is sorted then calculate the difference between the array 
+        min_val = min(vals[i+1] - vals[i] for i in range(len(vals) - 1)) #O(N)
+
+
+        [1,2,3,4,5,0]
+        
+        [10002, 10004] => 10002
+
+        [1,2,3,4,5,0]
+def getMinimum(arr):
+  # always start with the least minimum value
+  minval = float('-inf')
+  
+  for i in arr:
+    if i < minval:
+      minval = i
+  
+  return minval
+
+def getMax(arr):
+  maxval = float('-inf')
+  
+1
+        4
+     1     6
+   -1  3
+  -1 1 3 4 6
+  
+  min (1, 6-4)
+  
+
+
+
+class Solution(object):
+    def minDiffInBST(self, root):
+        def dfs(node):
+            if node:
+                dfs(node.left)
+                #min_val = min(vals[i+1] - vals[i] for i in range(len(vals) - 1)) #O(N)
+
+                self.ans = min(self.ans, node.val - self.prev) # min(self.ans, 4-3)
+                self.prev = node.val
+                dfs(node.right)
+
+        self.prev = float('-inf') 
+        self.ans = float('inf') # ans needs to be the min dist, we want self.ans to be replaced as soon as possible
+        dfs(root)
+        return self.ans       
+        
+        
+        
+        
+        
+        
+pseudorandom number generator
+seed value
+
+how do you pick a seed randomly?
+use the system time
+123456789
+seed = sys.time
+
+def next():
+  self.seed = seed ^ 879987
+  self.seed = seed >> 3
+  ...
+  return self.seed
+  
+rand = Rand(1)
+rand.next() => 3
+rand.next() => 19287
+...
+
+rand = Rand(1)
+rand.next() => 3
+rand.next() => 19287
+
+
+rand = Rand(2)
+rand.next() => 98798789
+rand.next() => 12321
+
+quantum computing for truly random
