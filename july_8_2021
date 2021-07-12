@@ -1,0 +1,58 @@
+# write a function that calculates the average word length given a string of words
+# ask for test cases and edge cases
+# expected output format is double
+   5     5
+"hello world" => 5
+"hello worl" => 4.5
+
+edge case:
+"hello world."
+# special chars and numbers are just considered part of the word
+None => 0
+"" => 0
+"hello\nworld"
+# no weird whitespaces besides spacebar
+solution("hello world") => 5
+
+def split(main, delimiter):
+  # return the correct list
+
+1. split the string by spaces # you can use split
+2. iterate through the list of words
+3. get the length using len and store in a new list
+4. create sum at the start, add each len to sum
+5. return divide by len
+"hello word"
+words = ["hello", "world"]
+sum = 10.0
+word = world
+def avg_length_of_words(sentence):
+    # .split() accepts X returns Y
+    words = sentence.split(" ") # O(N = len(input))
+    
+    sum = 0.0
+    for word in words: 
+      word_length = len(word)
+      sum+= word_length
+
+    return sum / len(words)
+
+  
+  
+1. When you read a problem, don't look at the boundaries for the inputs, try to guess what they are first, then check.  This help you figure out what the edge cases are 
+1.5. Write out your pseudocode/English outline before writing any code
+2. When you write the solution, test your solution manually before you hit submit or "test" the goal is to get 100% on first submission.
+3. If you get errors, try to figure out the class of errors
+4. Think about the big O, if you have trouble figuring out, look at the discussions tab, use other people's sultions to figure it out
+      
+ 
+
+1. Tests/ test driven development
+2. keeping it simple (write the least amount of code to solve your problem)
+3. use libraries, other peoples
+4. choosing a good language for the job 
+5. clean coding
+6. Object oriented programming (encapulate the moving parts)
+7. functional programming (reduce the moving parts)
+8. code reviews by peers
+9. system tests/pentest/etc
