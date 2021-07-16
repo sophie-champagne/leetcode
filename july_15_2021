@@ -1,0 +1,126 @@
+sde 1
+sde 2
+sr sde/tech lead: lead team technology
+principal/staff sde <-- 30-40% code rest meetings and architecture
+
+
+technical director: designs general software, guides org's technical goals
+distinguished engineer
+
+
+https://leetcode.com/problems/diameter-of-binary-tree/solution/
+naive approach: calculate every distance between every node, return the maximum
+       x
+     x   x
+   x       x
+          x
+the only nodes that matter are leaf nodes
+the max diameter = max(height of left subtree + height of right sub tree + 1)
+       x
+     x   x
+   x       x
+          x
+left: 2
+  x
+x
+
+right: 3
+    x
+      x
+    x
+  
+if left or right is null, invoke max_diameter function on the non null side
+     x
+    x 
+   x x
+  x   x
+  left = 3
+  right = 0
+  
+  
+  
+https://leetcode.com/problems/balance-a-binary-search-tree/submissions/
+
+  
+dfs_traverse is preorder
+inorder traversal of a BST is always a sorted array
+
+java, c#: null
+c++, C: NULL
+python: None, python does not have null, or NULL or nil
+  
+new does not exist in python
+
+set()
+__init__
+
+print(x)
+int x = 5;
+
+declare variables as close to their usage as possible
+
+return a function that divides 2 numbers
+
+
+def divide(a, b):
+  if b == 0:
+    return None
+  return a/b
+
+y combinator
+
+when dealing with lists, it's almost always better to return a empty list
+[], None
+
+'', None
+
+generate_object()
+
+x = divide(1, 0)
+if x == None:
+  print(there was error)
+else:
+  print(x)
+
+class Solution:
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+        vals = []
+        
+        def dfs_traverse(node): 
+            if node:
+                dfs_traverse(node.right)
+                vals.append(node.val)
+                dfs_traverse(node.left)
+            
+            return vals
+        
+        arr = dfs_traverse(root)
+        # arr = []
+        #if the bst is empty
+        #None != []
+
+        #insert 
+        def constructbst(start,end,arr):
+            #try the null not working, why ? 
+            if start > end:
+                return None
+            else:
+                mid = (start+end)//2
+                
+            root = TreeNode(arr[mid])
+            
+            root.left = constructbst(start,mid-1,arr)
+            root.right = constructbst(mid+1,end,arr)
+            
+            return root
+
+        #arr.sort()
+        
+                
+        return constructbst(0,len(arr)-1, arr)
+                
+            
+        
+        
+            
+        
