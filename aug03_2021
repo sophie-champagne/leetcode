@@ -1,0 +1,88 @@
+class Node {
+  int value;
+  List<Node> neighbors;
+}
+
+def class Node:
+  __init__(self, value, neighbors):
+    self.value = value
+    self.neighbors = neighbors
+
+    1 - 2
+    |   |
+    3 - 4 - 5
+preorder = dfs
+e -> d
+d -> b or c, it doesn't matter
+if b, must go b->a, then a -> c
+if c, must go c->a, then a -> b
+
+inorder/postorder -> tree only these are not dfs or bfs
+
+level order traversal -> bfs
+def pre(treenode):
+  print(treenode.value)
+  
+  pre(treenode.left)
+  pre(treenode.right)
+     1
+    2 
+   
+n1 = Node()
+printed:
+  1
+
+    1 2 3
+  1 X Y Y
+  2 Y X Y
+  3 Y Y X
+  
+      1
+    /  |
+  2  - 3
+answer: if start at 1
+  1,2,3
+  1,3,2
+are both valid DFS
+visited = [1,]
+  
+dfs(1)
+
+# repeat values are possible
+def class Node:
+  __init__(self, value, neighbors):
+    self.value = value
+    self.neighbors = neighbors
+    self.hasVisited = False
+    
+def dfs(node):
+  if node.hasVisited:
+    return
+  node.hasVisited = True
+  print(node.value)
+  for neighbor in node.neighbors:
+    dfs(neighbor)
+  
+def helper(node, visited):
+  if node.value in visited:
+    return
+  print(node.value)
+  visited.append(node.value)
+  for neighbor in node.neighbors: # 2, 3
+    helper(neighbor, visited)
+            
+def dfs(node):
+  visited = []
+  helper(node, visited)
+  
+# mark which nodes you have already visited
+# each value of each node is guaranteed to be unique
+# use a set to keep track of which nodes have been visited
+def dfs(node):
+  print(node.value)
+  for neighbor in node.neighbors:
+    dfs(neighbor)
+  # start at arbitrary node
+  # visit current node
+  # dfs all of its neighbors
+  
