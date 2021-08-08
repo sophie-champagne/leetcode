@@ -1,3 +1,12 @@
+AWS terms:
+S3 -> blob large file store to store all your images  -- this will run out of space eventually (TB) as people upload images
+  - vertical 10 TB -> 20 TB
+  - horizontal 10 TB -> sharding 2x 10 TB shard
+CDN -> content delivery network: net work of caches that are distributed physically around the world
+  - cache policy? LRU cache, max size
+  
+
+
 class Node {
   int value;
   List<Node> neighbors;
