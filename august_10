@@ -1,0 +1,172 @@
+https://realpython.com/python-heapq-module/
+priority queue O(logn)
+[
+10,
+  11, 
+  1
+]
+q.push(10)  
+q.push(11)  
+q.push(1)  
+
+q.pop() # O(N)
+
+O(logn)
+   1
+11   10 
+hash function takes input of arbitrary length and outputs a non-arbitrary length 
+123451253253135125... => 12345678
+2 => 98765432
+
+hash function implementations:
+truncation:
+hash function: take the last two digits
+200 => 00
+123 => 23
+124455 => 55
+
+0101010
+{
+  "asdf": 1234
+} => 98765423
+
+hashmap <=> dict
+
+x = [
+  "a",
+  "b",
+  "c"
+]
+x[0] # O(1)
+
+d = {
+  0: "a",
+  1: "b",
+  2: "c"
+}
+d[0] # O(1)
+
+d2 = {
+  x: "a",
+  y: "b",
+  z: "c"
+}
+d["z"]
+
+"lkuashdflkjsadhljsdhfk" => 3455
+
+
+d3 = 
+[
+...
+  23: hello => 1234
+]
+
+d3.put("abc", "hello") => "bc" => 23
+d3.put("xyzabc", "1234") => "bc" => 23
+
+d3.put("x", "a")
+init:
+python creates a large list, that list can't be infinite size
+hash function take arbitrary size and return fixed size
+d3.put("!@343241234341", )
+
+put:
+1. python calculates hash value of the key # hash("x") => 264 O(1)
+2. python puts the value at the index of the array equal to the hash output # d3.list.insert(264, "a") O(1)
+
+d3.get("x")
+get:
+1. python calculates hash value of the key # hash("x") => 264 O(1)
+2. python returns the value at the index # O(1)
+
+https://leetcode.com/problems/two-sum/
+O(N) time
+O(N) space
+look at each variable, note if the vari will change its memory usage throughout the function
+
+x = 1 # ...000001
+x += 1 # ...0000010
+int => 8bytes 000000
+
+y = [] # [...]
+y.append(1) # list: 1 byte + []
+y.append(2) # list: 2 bytes + []
+
+z = {}
+z.put(1,2) # 2 byte
+z.put(3,4) # 4 byte
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap={} # will grow
+        #write in a hashmap 
+        for ind,num in enumerate(nums): # O(1) time * N times
+            hashmap[num] = ind # O(1)
+        #loop through the nums and get the hashmap function 
+        for i, num in enumerate(nums):
+            j = hashmap.get(target - num)
+            
+            if j is not None and i!= j:
+                return [i,j]
+              
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap={} # will grow
+        #write in a hashmap 
+        for ind,num in enumerate(nums): # adds O(1) space N times
+            hashmap[num] = ind # adds O(1) space
+        #loop through the nums and get the hashmap function 
+        for i, num in enumerate(nums):
+            j = hashmap.get(target - num)
+            
+            if j is not None and i!= j:
+                return [i,j]
+O(N^2) time
+O(1) space
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        for i in range(len(nums)): # i => int will never be more than 8 bytes
+            for j in range(i+1,len(nums)): # j will never be more than 8 bytes
+                if nums[i] + nums[j] == target:
+                    return [i,j] 
+        # result will change in size, however, by the constraints of this solution, result will never have more than 2 ints, which makes 
+   
+
+##better solution 
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+      
+        if not nums: 
+            return 0 
+        
+        j = 0 
+        for i in range(len(nums)): # range creating a list of [0...len] 
+            if nums[i]: 
+                nums[j],nums[i] = nums[i],nums[j]
+                j+=1
+                
+ 
+ ##first solutions 
+ class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+      
+        if not nums: 
+            return 0 
+        
+        j = 0
+        for i in range(len(nums)): #  creates [0...len]
+            if nums[i] != 0:
+                nums[j] = nums[i]
+                j+=1
+        
+        for i in range(j,len(nums)): # [j...len]
+            nums[i] = 0 
+        
+        return nums
+
