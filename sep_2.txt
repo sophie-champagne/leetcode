@@ -1,0 +1,250 @@
+Sep 2nd: 2021
+amt = 10
+[1, 2, 5]
+
+           5
+     /     |           \
+5          2             1
+           |  \
+           2   1            5   2   1
+           |   |  \
+           1   2    1  
+ 
+    
+
+https://leetcode.com/problems/coin-change/
+The solution for a given amount against a set of coins will always be the same solution
+25
+[5,4,3,2,1]
+return 5
+memo: int => int
+memo[25] == coinChange(arr, 25)
+
+greedy will not always get an optimal solution, thats why you need DFS as well
+
+
+https://leetcode.com/problems/lemonade-change/
+
+#queue to represent the BFS 
+def BFS(graph,start,end): 
+    visited = set() 
+    # if you switch queue with stack, you get a DFS
+    queue = [] 
+    queue.append(start) 
+    
+    while queue: 
+        node = queue.pop(0) # must return the first value
+        visited.node(add) 	
+    	  process(node)
+    	  nodes = generate_related_nodes(node)
+        queue.push(nodes)
+
+
+
+def DFS(self,tree):
+    
+    if tree.root is None: 
+       return [] 
+       
+    #initialize the visited and with a stack 
+    visited,stack = [], [tree.root]
+    
+    #while the stack is not null 
+    while stack: 
+        #pop the stack (LIFO) 
+        node = stack.pop() 
+        #if they are in the tree, and it should be added 
+        visited.add(node)
+        
+        #need to process the node 
+        process(node) 
+        
+        nodes = generate_related_nodes(node)
+        stack.push(nodes)
+             
+
+
+def dfs(node):
+	visited = set() 
+
+def helper(node,visited):
+    if node in visited: 
+       return
+       
+    visited.add(node) 
+    for next_node in node.children(): 		
+        if next_node not in visited: 			
+           helper(next_node, visited)
+helper(node)
+say we have 10 DFS problems we want to solve at the same time
+we cant use this solution
+if we run dfs(node1, visited) dfs(node2, visited)
+visited = set() # try not to use global values
+
+def dfs(node,visited):
+    if node in visited: 
+       return
+       
+    #add the node in the visited set, also visit the node here
+    visited.add(node) 
+    
+    #process the current node here: 
+    #它并没有在loop 完成的时候就已经走到下一层了
+    for next_node in node.children(): 		
+        #if the node is not in the visited node, then it should not be visited 
+        if next_node not in visited: 			
+           dfs(next_node, visited)
+
+
+Backtracking:
+while you're solving the problem, you see the need to return to a previous state
+
+Greedy
+at each step, you consider only the best step that can be taken right now
+
+DP
+DP is always an optimization, all DP problems can be solved without DP
+bottom up approach to memoization
+example we just did, start with the small parts and fill it up
+top down approach to memoization
+loop thru all the values first to fill in the memo
+
+
+fibonacci
+1 2 3 4 5 6...
+0 1 1 2 3 5 8 13 21 34 ...
+
+return the nth fib num
+
+def fib(n):
+	if n == 1:
+		return 0
+	elif n == 2:
+		return 1
+	else:
+return fib(n-1) + fib(n-2)
+
+memo = []
+for i ... X (X = 1000)
+	memo[i] = -1
+memo[1] = 0
+memo[2] = 1
+[-1, 0, 1, -1, -1, -1... -1]
+def fib(n):
+	if memo[n]:
+		return memo[n]
+	else:
+		memo[n-2] = fib(n-2)
+		memo[n-1] = fib(n-1)
+		memo[n] = memo[n-1] + memo[n-2]
+		return memo[n]
+  0  1  2   3   4   5   6 ...
+[-1, 0, 1,  1,  2,  3, -1... -1]
+
+fib(5) => 3
+fib(3) => 1
+fib(2) => 1
+fib(1) => 0
+fib(4) => 2
+fib(3) => 1
+fib(2) => 1
+
+1 => O(1)
+2 => 
+5
+fib(5)
+fib(4)
+fib(3)
+fib(2)
+1
+0
+fib(2)
+fib(1)
+fib(0)
+fib(3)
+2
+1
+No DP solution:
+    int mincoins(vector<int>& coins,int amount){
+        
+        //base case
+        if(amount < 0) return -1;
+        if(amount == 0) return 0;
+        int ans = INT_MAX;
+        for(int i=0;i<coins.size();i++){
+            if(amount - coins[i]>=0){
+                int curr_ans = mincoins(coins,amount-coins[i]); 
+                if(curr_ans == -1) continue;
+                ans = min(ans,curr_ans+1);
+            }
+        }
+        return ans == INT_MAX ? -1 : ans;
+    }
+
+
+
+
+    // dp function
+    int mincoins(vector<int>& coins,int amount,int dp[]){
+        
+        //base case
+        if(amount < 0) return -1;
+        if(amount == 0) return 0;
+        
+        //dp
+        if(dp[amount]!=0)return dp[amount];
+        
+        int ans = INT_MAX; // INTMAX ~= 2 billion inf
+		   0 1 2
+//[1,2,5]
+   //for coin in coins
+        for(int i=0;i<coins.size();i++){ // start at the smallest coin
+            if(amount - coins[i]>=0){
+                int curr_ans = mincoins(coins,amount-coins[i],dp); 
+                // if we get INT_MAX this means the coin is not possible
+                // hence we skip
+                if(curr_ans == -1) continue;
+                ans = min(ans,curr_ans+1);
+            }
+        }
+        
+        // case for 1 coin
+        // if there is no solution, put -1 in the memo
+        dp[amount] = (ans ==INT_MAX)? -1 : ans;
+        
+        return dp[amount];
+    }
+
+
+C++:
+class Solution {
+public:
+    void coinChange(vector<int>& coins, int amount, int c_index, int count, int& ans) {
+        if (amount == 0) {
+            ans = min(ans, count);
+            return;
+        }
+        if (c_index == coins.size()) return;
+        if (vi[amount][c_index] <= count) return;
+
+        for (int k = amount / coins[c_index]; k >= 0 && k + count < ans; k--) {
+            int nextAmount = amount - k * coins[c_index];
+            coinChange(coins, nextAmount, c_index + 1, count + k, ans);
+        }
+        vi[amount][c_index] = min(vi[amount][c_index], count);
+    }
+
+    int coinChange(vector<int>& coins, int amount) {
+        if (amount == 0) return 0;
+        sort(coins.rbegin(), coins.rend());
+        int ans = INT_MAX;
+        vi = vector<vector<int>>(amount + 1, vector<int>(coins.size(), INT_MAX));
+        coinChange(coins, amount, 0, 0, ans);
+        return ans == INT_MAX ? -1 : ans;
+    }
+
+private:
+    vector<vector<int>> vi;
+};
+
+
